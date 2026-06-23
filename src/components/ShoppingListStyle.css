@@ -1,0 +1,8 @@
+.strikeout {
+    text-decoration: line-through;
+    color: #b8c2cc;
+}
+
+.highlight {
+    color: #de751f;
+}
