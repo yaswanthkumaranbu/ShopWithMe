@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import viteLogo from '../assets/vite.svg'
 import heroImg from '../assets/hero.png'
 import vueLogo from '../assets/vue.svg'
@@ -18,7 +18,6 @@ const saveItem = () => {
   newItem.value = ''
   newItemHighPriority.value = ''
 }
-
 const doEdit = (val) => {
   AddItem.value = val
   newItem.value = ''
@@ -27,6 +26,10 @@ const doEdit = (val) => {
 const strikeItem = (item) => {
   item.purchased = !item.purchased
 }
+const reverseItems = computed(() => {
+return [...itemList.value].reverse()
+})
+
 </script>
 
 <template>
@@ -54,7 +57,7 @@ const strikeItem = (item) => {
   </form>
   <ul>
     <li 
-    :key="index" v-for="(item, index) in itemList"
+    :key="index" v-for="(item, index) in reverseItems"
     :class="{strikeout : item.purchased, highlight : item.highPriority}" 
     @click="strikeItem(item)"
     >
